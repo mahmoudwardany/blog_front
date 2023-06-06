@@ -1,0 +1,15 @@
+.add-comment-input{
+    width: 100%;
+    border-radius: 10px;
+    padding:10px;
+    border: none;
+}
+.addcomment-btn{
+background-color: var(--primary-color);
+color: var(--white-color);
+border-radius: 10px;
+padding:10px 20px;
+font-size: 1rem;
+cursor:pointer;
+border: none;
+}

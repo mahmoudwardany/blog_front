@@ -1,24 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import Home from "./pages/Home/Home";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import CreatePost from "./pages/createPost/CreatePost";
+import Post from "./pages/Post-page/Post.jsx";
+import PostDetails from "./pages/PostDetails/PostDetails";
+import { ToastContainer } from "react-toastify";
+import Category from "./pages/Category/Category";
+import Profile from "./pages/Profile/Profile";
+import Users from "./pages/admin/Users";
+import PostsTable from "./pages/admin/PostsTable";
+import CategoriesTable from "./pages/admin/CategoriesTable";
+import { CommentsTable } from "./pages/admin/CommentsTable";
+import Register from "./pages/Forms/Register";
+import Login from "./pages/Forms/Login";
+import ForgotPassword from "./pages/Forms/ForgotPassword";
+import ResetPassword from "./pages/Forms/ResetPassword";
+import { useSelector } from "react-redux";
+import Verifyemail from "./pages/Verify-email/Verify-email";
+
 
 function App() {
+  const {user} =useSelector((state)=>state.auth)
+
+  let routes=createBrowserRouter([
+    {
+      path:"",element:<Layout />,children:[
+        {path:"register",element:!user ? <Register/> : <Navigate to={'/'}/>},
+        {path:"user/:userId/verify/:token",element:!user ? <Verifyemail/> : <Navigate to={'/'}/>},
+        {path:"login",element:!user ?<Login/> : <Navigate to={'/'}/>},
+        {path:"forgot-password",element:<ForgotPassword/>},
+        {path:"reset-password",element:<ResetPassword/>},
+        {path:"profile/:id",element:<Profile/>},
+
+        {path:"",element:<Home/>},
+        //admin
+        {path:"admin",element:user?.isAdmin ?<AdminDashboard/> : <Navigate to={'/'}/>},
+        {path:"admin/users", element:user?.isAdmin ? <Users/> : <Navigate to={'/'}/>},
+        {path:"admin/posts", element:user?.isAdmin ? <PostsTable/> : <Navigate to={'/'}/>},
+        {path:"admin/categories", element:user?.isAdmin ?<CategoriesTable/>: <Navigate to={'/'}/>},
+        {path:"admin/comments",element:user?.isAdmin ? <CommentsTable/>: <Navigate to={'/'}/>},
+
+        //user
+        {path:"/posts/create",element:user ?<CreatePost/> : <Navigate to={'/'}/>},
+        {path:"posts",element:<Post/>},
+        {path:"posts/details/:id",element:<PostDetails/>},
+        {path:"posts/categories/:category",element:<Category/>},
+      ]
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <ToastContainer theme='dark' position='top-center'/>
+        <RouterProvider router={routes}/>
+    </>
+   
   );
 }
 

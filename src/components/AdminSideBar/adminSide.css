@@ -1,0 +1,37 @@
+
+.admin-sideBar{
+    border-right: 1px solid var(--gray-color);
+padding:10px;
+text-align: start;
+
+}
+
+.admin-sidebar-title{
+    font-size: 24px;
+    font-weight: bold;
+    color:var(--primary-color);
+    margin-bottom:30px;
+    display: block;
+    text-decoration: none;
+}
+.admin-sidebar-title i{
+    color:var(--green-color);
+    margin-right: 5px;
+}
+.admin-sidebar-list{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-sidebar-link{
+text-decoration: none;
+color:var(--secondary-color);
+margin-bottom: 20px;
+cursor: pointer;
+font-weight: 600;
+font-size: 21px;
+}
+.admin-sidebar-link i {
+    margin-right: 5px;
+}
