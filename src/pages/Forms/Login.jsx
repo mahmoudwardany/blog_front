@@ -50,8 +50,8 @@ const Login = () => {
         </button>
       </form>
       <div className="form-footer">
-        Don't have an Account?{" "}
-        <Link to="/register">Register</Link>
+        Did you forgot your password?{" "}
+        <Link to="/forgot-password">Forgot Password</Link>
       </div>
     </section>
      );

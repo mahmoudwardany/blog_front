@@ -10,8 +10,6 @@ const Sidebar = () => {
   useEffect(()=>{
 dispatch(getAllCategories())
   },[dispatch])
-  console.log(categories)
-
   return (
     <div className="sidebar">
       <h5 className="sidebar-title">CATEGORIES</h5>

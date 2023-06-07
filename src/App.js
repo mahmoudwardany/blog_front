@@ -14,10 +14,10 @@ import CategoriesTable from "./pages/admin/CategoriesTable";
 import { CommentsTable } from "./pages/admin/CommentsTable";
 import Register from "./pages/Forms/Register";
 import Login from "./pages/Forms/Login";
-import ForgotPassword from "./pages/Forms/ForgotPassword";
-import ResetPassword from "./pages/Forms/ResetPassword";
 import { useSelector } from "react-redux";
 import Verifyemail from "./pages/Verify-email/Verify-email";
+import Forgotpassword from "./pages/Forms/Forgot-password";
+import ResetPassword from "./pages/Forms/ResetPassword";
 
 
 function App() {
@@ -29,8 +29,8 @@ function App() {
         {path:"register",element:!user ? <Register/> : <Navigate to={'/'}/>},
         {path:"user/:userId/verify/:token",element:!user ? <Verifyemail/> : <Navigate to={'/'}/>},
         {path:"login",element:!user ?<Login/> : <Navigate to={'/'}/>},
-        {path:"forgot-password",element:<ForgotPassword/>},
-        {path:"reset-password",element:<ResetPassword/>},
+        {path:"forgot-password",element:!user ?<Forgotpassword/> : <Navigate to={'/'}/>},
+        {path:"reset-password/:userId/:token",element:!user ?<ResetPassword/> : <Navigate to={'/'}/>},
         {path:"profile/:id",element:<Profile/>},
 
         {path:"",element:<Home/>},
