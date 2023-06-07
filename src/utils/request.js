@@ -1,5 +1,5 @@
 import axios from 'axios'
 const request=axios.create({
-    baseURL:"http://localhost:8000/api"
+    baseURL:"https://blog-vl26.onrender.com/api"
 })
 export default request

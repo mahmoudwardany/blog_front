@@ -3,12 +3,11 @@ import { passwordAction } from "../slices/passwordSlice";
 import { toast } from 'react-toastify'
 
 //forgotPassword
-export const forgotPasswordFun = (email) => {
+export const forgotPassword = (email) => {
     return async () => {
         try {
-            const { data } = await request.post('http://localhost:8000/api/password/reset-password-link', {email})
+            const { data } = await request.post('/password/reset-password-link', {email})
             toast.success(data.message)
-            console.log(data)
         } catch (error) {
             toast.error(error?.response?.data?.message)
         }
