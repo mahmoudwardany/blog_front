@@ -3,7 +3,7 @@ import { passwordAction } from "../slices/passwordSlice";
 import { toast } from 'react-toastify'
 
 //forgotPassword
-export const forgotPassword = (email) => {
+export const forgotPasswordFun = (email) => {
     return async () => {
         try {
             const { data } = await request.post('/password/reset-password-link', {email})

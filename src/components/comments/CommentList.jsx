@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import swal from 'sweetalert';
 import './commentList.css'
 import UpdateComment from './updateComment';
 import Moment from 'react-moment'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteComment } from '../../redux/apiCalls/commentApi';
+import { updateComments } from '../../redux/apiCalls/commentApi';
+
 const CommentList = ({comments}) => {
   const dispatch=useDispatch()
 
-    const {user,isCommentDeleted} =useSelector((state)=>state.auth)
+    const {user} =useSelector((state)=>state.auth)
   const [updateComment,setupdateComment]=useState(false)
   const [updateCommentModel,setupdateCommentModel]=useState(null)
 
@@ -16,9 +18,12 @@ const CommentList = ({comments}) => {
     setupdateCommentModel(comment)
     setupdateComment(true)
   }
-  useEffect(()=>{
+ 
+  const handleDataReceived = useCallback((id,text) => {
+    dispatch(updateComments(id,{text}))    
 
-  },[isCommentDeleted])
+  }, [dispatch]);
+
     const handleDelete=(commentId)=>{
         swal({
           title: "Are you sure?",
@@ -30,12 +35,16 @@ const CommentList = ({comments}) => {
         .then((isOk) => {
           if (isOk) {
             dispatch(deleteComment(commentId))
-            window.location.reload()
           } else {
             swal("Something went Wrong!");
           }
         })
       }
+      useEffect(() => {
+        comments?.forEach((comment) => {
+          deleteComment(comment._id);
+        });
+      }, [comments]);
  
       return (
     <div className="comment-list">
@@ -48,7 +57,7 @@ const CommentList = ({comments}) => {
             <span className="comment-item-username">{comment?.username}</span>
           </div>
           <div className="comment-item-time"> 
-          <Moment fromNow ago>
+          <Moment >
           {comment?.createdAt} 
           </Moment> {""}
           ago
@@ -65,7 +74,9 @@ const CommentList = ({comments}) => {
         </div>}
       </div>
         ))}
-  {updateComment&&<UpdateComment setupdateComment={setupdateComment} updateCommentModel={updateCommentModel} />}
+  {updateComment&&<UpdateComment 
+  onDataReceived={handleDataReceived}
+  setupdateComment={setupdateComment} updateCommentModel={updateCommentModel} />}
   </div>
   )
 }

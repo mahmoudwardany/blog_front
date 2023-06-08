@@ -6,9 +6,7 @@ postCat:[],
 isLoading:false,
 isPostCreated:false,
 post:null,
-isCommentAdded:false,
-isCommentDeleted:false,
-isCommentupdated:false
+
 }
 
 const PostSlice=createSlice({
@@ -47,13 +45,13 @@ const PostSlice=createSlice({
     },
     addComment(state,action){
         state.post.comments.push(action.payload)
-        state.isCommentAdded=true
     },
     updateComment(state,action){
         //map array comment and if comment we want to update = uploaded Comment 
         //make comment array = new comment
         state.post.comments=state.post.comments.map(c=> c._id === action.payload._id?action.payload:c);
-        state.isCommentupdated=true
+        state.isLoading=true
+
     },
     deleteComment(state,action){
         state.post.comments=state.post.comments.filter(c => c._id !== action.payload._id)

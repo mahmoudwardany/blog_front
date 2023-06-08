@@ -36,7 +36,7 @@ export const deleteComment = (commentId) => {
     }
 }
 //update Comment
-export const updateComment = (commentId,newComment) => {
+export const updateComments = (commentId,newComment) => {
     return async (dispatch,getState) => {
         try {
     const {data}=   await request.put(`/comments/${commentId}`,newComment,{
@@ -44,7 +44,10 @@ export const updateComment = (commentId,newComment) => {
                     Authorization:"Bearer " + getState().auth.user.token
                 }
             })
+            
             dispatch(postAction.updateComment(data))
+            dispatch(postAction.clearLoading())
+
         } catch (error) {
             toast.error(error.response.data.message)
         }

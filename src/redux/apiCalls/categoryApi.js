@@ -8,10 +8,10 @@ export const getAllCategories = () => {
     return async (dispatch) => {
         try {
             const { data } = await request.get(`/categories`)
-            toast.success(data.message)
-            dispatch(categoryAction.fetchCategories(data.categories))
+            toast.success(data?.message)
+            dispatch(categoryAction.fetchCategories(data?.categories))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message)
         }
     }
 }

@@ -95,14 +95,14 @@ window.scrollTo(0,0)
         <small>{post?.likes?.length} likes</small>
 
       </div>
-      {user?._id === post?.user._id&&
+      {user?._id === post?.user._id || user?.isAdmin?
       <div>
         <i
           onClick={()=>setupdatePost(true)}
           className="bi bi-pencil-square"
         ></i>
         <i  className="bi bi-trash-fill" onClick={handleDelete}></i>
-      </div>}
+      </div>:""}
     </div>
     {user? <AddComment postId={post?._id}/> :
     <p className='text-center text-danger fw-bolder fs-2'>Please Login to Write Comment</p>

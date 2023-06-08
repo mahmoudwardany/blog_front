@@ -1,21 +1,24 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import './updateComment.css'
-import { updateComment } from '../../redux/apiCalls/commentApi';
-import { useDispatch } from 'react-redux';
-const UpdateComment = ({setupdateComment,updateCommentModel}) => {
-    const [text, setText] = useState(updateCommentModel.text);
-    const dispatch=useDispatch()
+import { useSelector } from 'react-redux';
 
-    const formSubmitHandler=(e)=>{
-        e.preventDefault()
-        dispatch(updateComment(updateCommentModel?._id,{text}))
-        setupdateComment(false)
-        window.location.reload()
-    }
+const UpdateComment = ({setupdateComment,updateCommentModel,onDataReceived}) => {
+    const [text, setText] = useState(updateCommentModel.text);
+    const {isLoading}=useSelector(state=>state.posts)
+    const handleInputChange = (event) => {
+      setText(event.target.value);
+    };
+    const formSubmitHandler = (e) => {
+      e.preventDefault();
+      onDataReceived(updateCommentModel?._id, text);
+      setupdateComment(false);
+    };
   return (
     <div className="update-comment">
     <form onSubmit={formSubmitHandler} className="update-comment-form">
-      <abbr title="close">
+      {isLoading?<p>loading....</p>:
+      <>
+        <abbr title="close">
         <i
           onClick={() => setupdateComment(false)}
           className="bi bi-x-circle-fill update-comment-form-close"
@@ -23,7 +26,7 @@ const UpdateComment = ({setupdateComment,updateCommentModel}) => {
       </abbr>
       <h1 className="update-comment-title">Edit Comment</h1>
       <input
-        onChange={(e) => setText(e.target.value)}
+        onChange={handleInputChange}
         value={text}
         type="text"
         className="update-comment-input"
@@ -31,6 +34,9 @@ const UpdateComment = ({setupdateComment,updateCommentModel}) => {
       <button type="submit" className="update-comment-btn">
         Update Comment
       </button>
+      </>
+      }
+     
     </form>
   </div>
   )

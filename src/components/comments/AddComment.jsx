@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 import './addcomment.css'
 import { useDispatch } from 'react-redux'
@@ -7,13 +7,14 @@ const AddComment = ({postId}) => {
     const [text,setText]=useState('')
     const dispatch=useDispatch()
     
-    const handleSubmit=(e)=>{
-        e.preventDefault()
+  
+    const handleSubmit = useCallback((e) => {
+      e.preventDefault()
         text.trim()===""&&toast.error('Must be write something')
         setText("")
         dispatch(addComment({text,postId}))
-        window.location.reload()
-    }
+      
+    }, [dispatch,postId,text]);
   return (
     <form className='add-comment my-3' onSubmit={handleSubmit}>
         <input type='text' placeholder='Add Comment'
@@ -21,7 +22,7 @@ const AddComment = ({postId}) => {
         value={text}
         onChange={(e)=>setText(e.target.value)}
         />
-        <button className='addcomment-btn mt-3' type='submit'>Add Comment</button>
+        <button className='addcomment-btn mt-3' type='submit' >Add Comment</button>
     </form>
   )
 }
