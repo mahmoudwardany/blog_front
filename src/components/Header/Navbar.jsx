@@ -11,11 +11,11 @@ const Navbar = ({ toggle, setToggle }) => {
     >
       <ul className="nav-links">
         <Link onClick={() => setToggle(false)} to="/" className="nav-link">
-          <i className="bi bi-house"></i>
+          <i className="fa-solid fa-house"></i>
           Home
         </Link>
         <Link onClick={() => setToggle(false)} to="/posts" className="nav-link">
-          <i className="bi bi-stickies"></i>
+          <i className="fa-solid fa-note-sticky"></i>
           Posts
         </Link>
         <Link
@@ -23,7 +23,7 @@ const Navbar = ({ toggle, setToggle }) => {
           to="/posts/create"
           className="nav-link"
         >
-          <i className="bi bi-journal-plus"></i>
+          <i className="fa-solid fa-book"></i>
           Create
         </Link>
         {user?.isAdmin ? (
@@ -32,7 +32,7 @@ const Navbar = ({ toggle, setToggle }) => {
             to="/admin"
             className="nav-link"
           >
-            <i className="bi bi-person-check"></i>
+            <i className="fa-solid fa-user-check"></i>
             Admin Dashboard
           </Link>
         ):""}

@@ -1,23 +1,27 @@
-import {  useEffect, useState } from 'react';
+import {   useState } from 'react';
 import './updatePost.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePost } from '../../redux/apiCalls/postApi';
 const UpdatePost = ({setupdatePost,post}) => {
   const dispatch=useDispatch()
-  const {categories,updateUserProfile} =useSelector(state=>state.categories)
+  const {categories} =useSelector(state=>state.categories)
     const [title, setTitle] = useState(post.title);
     const [description, setDescription] = useState(post.description);
     const [category, setCategory] = useState(post.category);
     const formSubmitHandler=(e)=>{
         e.preventDefault()
       dispatch (updatePost({title,description,category},post?._id))
-      window.location.reload()
         setupdatePost(false)
+        interval()
     }
-useEffect(()=>{
-  
-  
-},[updateUserProfile])
+    function interval(){
+      const myInterval=setInterval(()=>{
+        window.location.reload()
+      },2000)
+      return () => {
+        clearInterval(myInterval);
+      };
+    }
   return (
     <div className="update-post">
     <form onSubmit={formSubmitHandler} className="update-post-form">

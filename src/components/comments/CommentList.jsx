@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import  {  useState } from 'react'
 import swal from 'sweetalert';
 import './commentList.css'
 import UpdateComment from './updateComment';
 import Moment from 'react-moment'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteComment } from '../../redux/apiCalls/commentApi';
-import { updateComments } from '../../redux/apiCalls/commentApi';
 
 const CommentList = ({comments}) => {
   const dispatch=useDispatch()
-
     const {user} =useSelector((state)=>state.auth)
   const [updateComment,setupdateComment]=useState(false)
   const [updateCommentModel,setupdateCommentModel]=useState(null)
@@ -18,11 +16,7 @@ const CommentList = ({comments}) => {
     setupdateCommentModel(comment)
     setupdateComment(true)
   }
- 
-  const handleDataReceived = useCallback((id,text) => {
-    dispatch(updateComments(id,{text}))    
 
-  }, [dispatch]);
 
     const handleDelete=(commentId)=>{
         swal({
@@ -35,17 +29,20 @@ const CommentList = ({comments}) => {
         .then((isOk) => {
           if (isOk) {
             dispatch(deleteComment(commentId))
+            interval()
           } else {
             swal("Something went Wrong!");
           }
         })
+      } 
+      function interval(){
+        const myInterval=setInterval(()=>{
+          window.location.reload()
+        },2000)
+        return () => {
+          clearInterval(myInterval);
+        };
       }
-      useEffect(() => {
-        comments?.forEach((comment) => {
-          deleteComment(comment._id);
-        });
-      }, [comments]);
- 
       return (
     <div className="comment-list">
     <h4 className="comment-list-count">{comments?.length} comments</h4>
@@ -75,7 +72,6 @@ const CommentList = ({comments}) => {
       </div>
         ))}
   {updateComment&&<UpdateComment 
-  onDataReceived={handleDataReceived}
   setupdateComment={setupdateComment} updateCommentModel={updateCommentModel} />}
   </div>
   )

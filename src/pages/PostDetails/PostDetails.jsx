@@ -8,7 +8,7 @@ import CommentList from '../../components/comments/CommentList';
 import swal from 'sweetalert';
 import UpdatePost from './UpdatePost';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePost, getPostDetails, postLikeToggle, updatePostImage } from '../../redux/apiCalls/postApi';
+import { deletePost, getPostDetails, updatePostImage } from '../../redux/apiCalls/postApi';
 const PostDetails = () => {
     const { id } = useParams();
     const nav=useNavigate()
@@ -32,7 +32,7 @@ window.scrollTo(0,0)
       const handleDelete=()=>{
         swal({
           title: "Are you sure?",
-          text: "Once deleted, you will not be able to recover this imaginary file!",
+          text: "Once deleted, you will not be able to recover this Comment!",
           icon: "warning",
           buttons: true,
           dangerMode: true,
@@ -51,9 +51,9 @@ window.scrollTo(0,0)
     <div className="post-details-image-wrapper">
       <img src={file ? URL.createObjectURL(file) : post?.image?.url} alt="" className="post-details-image" />
       {user?._id === post?.user._id&&
-      <form  className="update-post-image-form" onSubmit={updateImageSubmitHandler}>
+      <form  className="update-post-image-form mt-2 mb-5" onSubmit={updateImageSubmitHandler}>
         <label className="update-post-image" htmlFor="file">
-          <i className="bi bi-image-fill"></i> select new image
+        <i className="fa-regular fa-image"></i> select new image
         </label>
         <input
           style={{ display: "none" }}
@@ -81,20 +81,7 @@ window.scrollTo(0,0)
     </p>
     
     <div className="post-details-icon-wrapper">
-      <div>
-        {user&&(
-        <i 
-        onClick={()=>{dispatch(postLikeToggle(post?._id))
-        }}
-        className={post?.likes?.includes(user?._id)
-          ?"bi bi-hand-thumbs-up-fill"
-          :"bi bi-hand-thumbs-up"
-        }
-        ></i>
-        )}
-        <small>{post?.likes?.length} likes</small>
 
-      </div>
       {user?._id === post?.user._id || user?.isAdmin?
       <div>
         <i
@@ -109,7 +96,7 @@ window.scrollTo(0,0)
     }
     
     {updatePostState&&<UpdatePost setupdatePost={setupdatePost} post={post}/>}
-<CommentList comments={post?.comments} />
+<CommentList comments={post?.comments}  postId={post?._id}/>
   </div>
   )
 }

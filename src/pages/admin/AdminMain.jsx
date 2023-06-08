@@ -32,7 +32,7 @@ useEffect(()=>{
             See all users
           </Link>
           <div className="admin-card-icon">
-            <i className="bi bi-person"></i>
+            <i className="fa-solid fa-user"></i>
           </div>
         </div>
       </div>

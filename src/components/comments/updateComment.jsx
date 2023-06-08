@@ -1,18 +1,32 @@
 import {  useState } from 'react';
 import './updateComment.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateComments } from '../../redux/apiCalls/commentApi';
+import { toast } from 'react-toastify';
 
-const UpdateComment = ({setupdateComment,updateCommentModel,onDataReceived}) => {
+const UpdateComment = ({setupdateComment,updateCommentModel}) => {
     const [text, setText] = useState(updateCommentModel.text);
     const {isLoading}=useSelector(state=>state.posts)
+  const dispatch=useDispatch()
+
     const handleInputChange = (event) => {
       setText(event.target.value);
     };
     const formSubmitHandler = (e) => {
       e.preventDefault();
-      onDataReceived(updateCommentModel?._id, text);
+      dispatch(updateComments(updateCommentModel._id,{text}))    
+      toast.success('comment updated')
       setupdateComment(false);
+      interval()
     };
+    function interval(){
+      const myInterval=setInterval(()=>{
+        window.location.reload()
+      },2000)
+      return () => {
+        clearInterval(myInterval);
+      };
+    }
   return (
     <div className="update-comment">
     <form onSubmit={formSubmitHandler} className="update-comment-form">

@@ -62,7 +62,8 @@ dispatch(getProfile(id))
         <abbr title="choose profile photo">
           <label
             htmlFor="file"
-            className="bi bi-camera-fill upload-profile-photo-icon"
+            className="fa-solid fa-camera upload-profile-photo-icon"
+            style={{color:"#2850a0"}}
           ></label>
         </abbr>
           <input
@@ -86,7 +87,7 @@ dispatch(getProfile(id))
       </div>
       {user?._id === profile?._id&&
       <button onClick={() => setUpdateProfile(true)} className="profile-update-btn">
-        <i className="bi bi-file-person-fill"></i>
+        <i className="fa-solid fa-user"></i>
         Update Profile
       </button>
 }

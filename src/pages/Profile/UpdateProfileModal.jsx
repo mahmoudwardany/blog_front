@@ -29,7 +29,7 @@ dispatch(updateUserProfile(profile?._id,updatedUser))
         <abbr title="close">
           <i
             onClick={() => setUpdateProfile(false)}
-            className="bi bi-x-circle-fill update-profile-form-close"
+            className="fa-regular fa-circle-xmark update-profile-form-close"
           ></i>
         </abbr>
         <h1 className="update-profile-title">Update Your Profile</h1>

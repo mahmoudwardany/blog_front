@@ -80,7 +80,7 @@ export const getPostDetails = (postId) => {
 export function postLikeToggle  (postId)  {
     return async (dispatch,getState) => {
         try {
-            const { data } = await request.put(`http://localhost:8000/api/posts/like/${postId}`,{},{
+            const { data } = await request.put(`/posts/like/${postId}`,{},{
                 headers:{
                     Authorization:"Bearer " + getState().auth.user.token,
                 }

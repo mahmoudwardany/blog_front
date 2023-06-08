@@ -29,7 +29,6 @@ export const deleteComment = (commentId) => {
                 }
             })
             dispatch(postAction.deleteComment(commentId))
-            dispatch(commentAction.deleteComment(commentId))
         } catch (error) {
             toast.error(error?.response?.data?.message)
         }

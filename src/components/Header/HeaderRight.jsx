@@ -31,11 +31,11 @@ setDown(false)
   to={`/profile/${user?._id}`}
   onClick={()=>setDown(false)}
   >
-    <i className="bi bi-file-person"></i>
+    <i className="fa-solid fa-user"></i>
     <span>Profile</span>
   </Link>
 <div className="header-dropdown-item" onClick={logoutHandler}>
-    <i className="bi bi-box-arrow-in-left"></i>
+    <i className="fa-solid fa-circle-left"></i>
     <span>Logout</span>
 </div>
 </div>}
