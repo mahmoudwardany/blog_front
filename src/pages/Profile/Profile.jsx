@@ -51,18 +51,18 @@ dispatch(getProfile(id))
     }
 
   },[isPrfoileDeleted,nav])
-
+console.log(user)
   return (
     <section className="profile">
     <div className="profile-header">
       <div className="profile-image-wrapper">
-        <img src={file ? URL.createObjectURL(file) : profile?.profilePhoto.url} alt="" className="profile-image" />
+        <img src={file ? URL.createObjectURL(file) : profile?.profilePhoto.url} alt="" className="profile-image mb-5" />
         {user?._id === profile?._id&&
         <form onSubmit={formSubmitHandler}>
         <abbr title="choose profile photo">
           <label
             htmlFor="file"
-            className="fa-solid fa-camera upload-profile-photo-icon"
+            className="fa-solid fa-camera upload-profile-photo-icon "
             style={{color:"#2850a0"}}
           ></label>
         </abbr>
@@ -77,7 +77,8 @@ dispatch(getProfile(id))
         </form>
 }
       </div>
-      <h1 className="profile-username">{profile?.username}</h1>
+      <h1 className="profile-username mt-3">{profile?.username} {user?.isAdmin ?
+      <span className=' admin'>Admin</span>  : ""}</h1>
       <p className="profile-bio">
        {profile?.bio}
       </p>

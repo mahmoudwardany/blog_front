@@ -230,3 +230,10 @@ html::-webkit-scrollbar-thumb {
       margin-right: 10px;
   }
 }
+.admin{
+  background-color:var(--red-color) ;
+  border-radius: 10px;
+  padding:5px;
+  font-size:13px;
+  color:gold
+}
