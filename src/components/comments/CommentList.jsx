@@ -65,9 +65,13 @@ const CommentList = ({comments}) => {
         <div className="comment-item-icon-wrapper">
           <i
     onClick={()=>handleUpdateComment(comment)}
-            className="bi bi-pencil-square"
+            className="fa-solid fa-pencil"
+          style={{color:"#0275d8",fontSize:"24px"}}
+            
           ></i>
-          <i  className="bi bi-trash-fill" onClick={()=>handleDelete(comment?._id)}></i>
+          <i  className="fa-solid fa-trash mx-3"
+          style={{color:"#df1616",fontSize:"24px"}}
+          onClick={()=>handleDelete(comment?._id)}></i>
         </div>}
       </div>
         ))}
