@@ -5,6 +5,7 @@ import { postAction } from "../slices/postSlice";
 export const getPosts = (pageNum) => {
     return async (dispatch) => {
         try {
+            dispatch(postAction.setLoading())
             const { data } = await request.get(`/posts?pageNumber=${pageNum}`)
             toast.success(data.message)
             dispatch(postAction.setPosts(data))

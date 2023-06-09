@@ -49,7 +49,11 @@ window.scrollTo(0,0)
   return (
     <div className="post-details">
     <div className="post-details-image-wrapper">
-      <img src={file ? URL.createObjectURL(file) : post?.image?.url} alt="" className="post-details-image" />
+      <img 
+      loading='lazy'
+      src={file ? URL.createObjectURL(file) : post?.image?.url}
+        alt=""
+        className="post-details-image" />
       {user?._id === post?.user._id&&
       <form  className="update-post-image-form mt-2 mb-5" onSubmit={updateImageSubmitHandler}>
         <label className="update-post-image" htmlFor="file">
@@ -68,7 +72,11 @@ window.scrollTo(0,0)
     </div>
     <h1 className="post-details-title">{post?.title}</h1>
     <div className="post-details-user-info">
-      <img src={post?.user?.profilePhoto?.url} alt="" className="post-details-user-image" />
+      <img 
+        loading='lazy'
+        src={post?.user?.profilePhoto?.url} 
+        alt="" 
+        className="post-details-user-image" />
       <div className="post-details-user">
         <strong>
           <Link to={`/profile/${post?.user?._id}`}>{post?.user?.username}</Link>

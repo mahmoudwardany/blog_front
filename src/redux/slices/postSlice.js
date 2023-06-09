@@ -14,6 +14,7 @@ const PostSlice=createSlice({
     initialState,
     reducers:{
     setPosts(state,actions){
+        state.isLoading=false
         state.posts=actions.payload
     },
     setCount(state,actions){

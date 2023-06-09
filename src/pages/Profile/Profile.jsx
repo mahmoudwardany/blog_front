@@ -56,7 +56,11 @@ console.log(user)
     <section className="profile">
     <div className="profile-header">
       <div className="profile-image-wrapper">
-        <img src={file ? URL.createObjectURL(file) : profile?.profilePhoto.url} alt="" className="profile-image mb-5" />
+        <img 
+      loading='lazy'
+        src={file ? URL.createObjectURL(file) : profile?.profilePhoto.url} 
+        alt="" 
+        className="profile-image mb-5" />
         {user?._id === profile?._id&&
         <form onSubmit={formSubmitHandler}>
         <abbr title="choose profile photo">
@@ -80,7 +84,7 @@ console.log(user)
       <h1 className="profile-username mt-3">{profile?.username} {user?.isAdmin ?
       <span className=' admin'>Admin</span>  : ""}</h1>
       <p className="profile-bio">
-       {profile?.bio}
+        {profile?.bio}
       </p>
       <div className="user-date-joined">
         <strong>Date Joined: </strong>
