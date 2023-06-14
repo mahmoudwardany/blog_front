@@ -14,6 +14,7 @@ export const addComment = (newComment) => {
                 }
             })
             dispatch(postAction.addComment(data))
+            dispatch(postAction.clearCommented())
         } catch (error) {
             toast.error(error.response.data.message)
         }

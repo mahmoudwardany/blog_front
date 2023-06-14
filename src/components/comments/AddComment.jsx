@@ -6,7 +6,6 @@ import { addComment } from '../../redux/apiCalls/commentApi'
 const AddComment = ({postId}) => {
     const [text,setText]=useState('')
     const dispatch=useDispatch()
-    
   
     const handleSubmit = useCallback((e) => {
       e.preventDefault()

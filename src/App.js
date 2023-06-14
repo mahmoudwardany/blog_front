@@ -1,4 +1,4 @@
-import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Navigate, RouterProvider, createHashRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -23,7 +23,7 @@ import ResetPassword from "./pages/Forms/ResetPassword";
 function App() {
   const {user} =useSelector((state)=>state.auth)
 
-  let routes=createBrowserRouter([
+  let routes=createHashRouter([
     {
       path:"",element:<Layout />,children:[
         {path:"register",element:!user ? <Register/> : <Navigate to={'/'}/>},

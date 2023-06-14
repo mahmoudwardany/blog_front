@@ -4,8 +4,6 @@ const PostItem = ({post,username,userId}) => {
 
   const profileLink= userId?`/profile/${userId}`:`/profile/${post?.user._id}`
     return (
-    
-     
       <div className="post-item">
       <div className="post-item-image-wrapper">
         <img src={post.image.url} alt="" className="post-itme-image" />
