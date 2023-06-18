@@ -12,6 +12,7 @@ import { logoutUser } from '../../redux/apiCalls/authApiCall';
 
 const Profile = () => {
   const {user} =useSelector((state)=>state.auth)
+  
   const {id}=useParams()
   const dispatch=useDispatch()
     const [updateProfile, setUpdateProfile] = useState(false);
@@ -51,7 +52,8 @@ dispatch(getProfile(id))
     }
 
   },[isPrfoileDeleted,nav])
-console.log(user)
+console.log(profile,'profile')
+console.log(user,'user')
   return (
     <section className="profile">
     <div className="profile-header">
@@ -81,8 +83,9 @@ console.log(user)
         </form>
 }
       </div>
-      <h1 className="profile-username mt-3">{profile?.username} {user?.isAdmin ?
-      <span className=' admin'>Admin</span>  : ""}</h1>
+      <h1 className="profile-username mt-3">{profile?.username} 
+      </h1>
+      {user?.isAdmin=== profile?.isAdmin?<span className=' admin'>Admin</span> :"User"}
       <p className="profile-bio">
         {profile?.bio}
       </p>
