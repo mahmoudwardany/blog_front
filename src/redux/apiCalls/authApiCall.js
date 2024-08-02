@@ -6,10 +6,10 @@ export const loginUser = (user) => {
         try {
             const { data } = await request.post('/auth/login', user)
             localStorage.setItem("userInfo", JSON.stringify(data))
-            toast.success(data.message)
+            toast.success(data?.message)
             dispatch(authAction.login(data))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message)
         }
     }
 }
@@ -25,9 +25,9 @@ export const registerUser = (user) => {
     return async (dispatch) => {
         try {
             const { data } = await request.post('/auth/register', user)
-            dispatch(authAction.rgisterUser(data.message))
+            dispatch(authAction.rgisterUser(data?.message))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error.response?.data?.message)
         }
     }
 }
