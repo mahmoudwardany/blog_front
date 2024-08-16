@@ -10,7 +10,7 @@ export const getProfile = (userId) => {
             const { data } = await request.get(`/users/profile/${userId}`)
             dispatch(profileAction.getProfile(data))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message)
         }
     }
 }
@@ -35,7 +35,7 @@ export const uploadPhotoProfile = (newPhoto) => {
             user.profilePhoto=data?.profilePhoto
             localStorage.setItem("userInfo",JSON.stringify(user))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message)
         }
     }
 }
@@ -57,7 +57,7 @@ export const updateUserProfile = (userId,profile) => {
             user.username=data?.username
             localStorage.setItem("userInfo",JSON.stringify(user))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message)
         }
     }
 }
@@ -76,7 +76,7 @@ export const deleteProfile = (userId) => {
             toast.success(data?.message)
             setTimeout(()=>dispatch(profileAction.clearProfileDeleted()),2000)
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error?.response?.data?.message)
         dispatch(profileAction.clearLoading())
         }
     }

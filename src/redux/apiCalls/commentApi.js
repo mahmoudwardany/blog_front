@@ -8,7 +8,7 @@ import { commentAction } from "../slices/commentSlice";
 export const addComment = (newComment) => {
     return async (dispatch,getState) => {
         try {
-            const { data } = await request.post(`/comments`,newComment,{
+            const { data} = await request.post(`/comments`,newComment,{
                 headers:{
                     Authorization:"Bearer " + getState().auth.user.token
                 }
@@ -16,7 +16,7 @@ export const addComment = (newComment) => {
             dispatch(postAction.addComment(data))
             dispatch(postAction.clearCommented())
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error.response.data?.message)
         }
     }
 }
@@ -49,7 +49,7 @@ export const updateComments = (commentId,newComment) => {
             dispatch(postAction.clearLoading())
 
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error.response.data?.message)
         }
     }
 }
@@ -58,15 +58,15 @@ export const updateComments = (commentId,newComment) => {
 export const fetchAllComments = () => {
     return async (dispatch,getState) => {
         try {
-            const { data } = await request.get(`/comments`,{
+            const { data} = await request.get(`/comments`,{
                 headers:{
                     Authorization:"Bearer " + getState().auth.user.token
                 }
             })
-            toast.success(data.message)
-            dispatch(commentAction.setComment(data.user))
+            toast.success(data?.message)
+            dispatch(commentAction.setComment(data?.user))
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error(error.response.data?.message)
         }
     }
 }
