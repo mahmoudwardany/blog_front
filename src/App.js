@@ -1,4 +1,4 @@
-import { Navigate, RouterProvider, createBrowserRouter, createHashRouter } from "react-router-dom";
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import AdminDashboard from "./pages/admin/AdminDashboard";
